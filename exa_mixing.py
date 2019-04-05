@@ -5,8 +5,8 @@ from pulp import *
 prob = LpProblem("A Mixing Problem",LpMinimize)
 
 # The 2 variables Beef and Chicken are created with a lower limit
-x1=LpVariable("ChickenPercent",0,None,LpContinuous)
-x2=LpVariable("BeefPercent",0, None, LpContinuous)
+x1=LpVariable("ChickenPercent",0,None,LpInteger)
+x2=LpVariable("BeefPercent",0, None, LpInteger)
 
 # The objective function is added to 'prob' first
 prob += 0.013*x1 + 0.008*x2, "Total Cost of Ingredients per can"
@@ -30,4 +30,3 @@ for v in prob.variables():
 
 # The optimised objective function value is printed to the screen
 print("Total Cost of Ingredients per can = ", value(prob.objective))
-
