@@ -35,7 +35,7 @@ from pulp import *
 import numpy as np
 
 # Create the 'prob' variable to contain the problem data
-prob = LpProblem("Replenishment Problem",LpMaximize)
+prob = LpProblem("Replenishment Problem", LpMaximize)
 
 # List of stores
 lstore = ['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10']
@@ -112,16 +112,10 @@ print("Total Benefit of Replenishment = ", value(prob.objective))
 for v in prob.variables():
     print(v.name, "=", v.varValue)
 
-# Check everything sums to the inttial stock
+# Check everything sums to the initial stock
 lpSum([prob.variables()[i].varValue for i in range(0,len(lstore))])
 
 # Add the poisson demand
-
-# Create a new demand dictionary with the previous demand
-demand_pois = {k: np.random.poisson(v) for k, v in demand.items()}
-
-# Check the numbers make sense
-demand_pois
 
 # Specify the new problem
 prob_pois = LpProblem("Replenishment Problem", LpMaximize)
